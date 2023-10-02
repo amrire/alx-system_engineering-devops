@@ -5,7 +5,7 @@ while [ $count -le 100 ]
 do
 	if [ $((count % 3)) -eq 0 ] && [ $((count % 5)) -eq 0 ]
 	then
-		echo "FizzBUzz"
+		echo "FizzBuzz"
 	elif [ $((count % 3)) -eq 0 ]
 	then
 		echo "Fizz"
