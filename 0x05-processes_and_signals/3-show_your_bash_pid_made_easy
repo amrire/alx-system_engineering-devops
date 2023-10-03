@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-# Script that displays the PID, along with the process name
-ps auxf | pgrep -l bash
