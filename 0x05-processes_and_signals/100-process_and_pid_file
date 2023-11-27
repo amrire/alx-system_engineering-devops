@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Script displays To infinity and beyond indefinitely
+file="/var/run/myscript.pid"
+
+if [ ! -e "$file" ]; then
+  touch "$file"
+fi
+sleep 1 & echo "$!" > "$file"
+trap 'echo I hate the kill command; rm $file; exit' SIGQUIT SIGTERM
+trap "echo Y U no love me?!" SIGINT
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done
