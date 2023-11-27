@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Script displays the content of /etc/passwd
+while [[ read -r xx yy ]]; do
+	print "%s %s\n$yy$xx"
+done < /etc/passwd
