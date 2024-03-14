@@ -1,9 +1,13 @@
-#Web stack debugging
+#increase the number of open file for nginx service
 
-#Increase number of default file
-exec {'fix--for-nginx':
-  #Script fix
-  command => "sed -i 's/15/unlimited/' /etc/default/nginx && service nginx restart",
-  #Paths to cmds
-  path => '/usr/bin:/bin:/usr/local/bin/',
+# Increase open file limit
+exec { 'fix--for-nginx':
+  command => 'sed -i "s/15/4096/" /etc/default/nginx',
+  path    => '/usr/local/bin/:/bin/'
+} ->
+
+# restart Nginx
+exec { 'nginx-restart':
+  command => 'nginx restart',
+  path    => '/etc/init.d/'
 }
