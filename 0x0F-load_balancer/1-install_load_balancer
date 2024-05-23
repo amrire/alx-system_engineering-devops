@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# install and configure HAproxy.
+
+apt-get -y update
+apt-get -y install haproxy
+
+echo '
+frontend http
+        bind 0:80
+        default_backend my_servers
+
+backend my_servers
+	# Use roundrobin to balance traffic
+        balance         roundrobin
+        # Define the backend servers
+        server          392085-web-01 18.204.3.176:80
+        server          392085-web-02 100.26.212.24:80
+' >> /etc/haproxy/haproxy.cfg
+
+service haproxy restart
