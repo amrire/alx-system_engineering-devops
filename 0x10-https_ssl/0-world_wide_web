@@ -2,7 +2,7 @@
 # 0. World wide web
 
 print_domain() {
-	dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | awk 'NR==2' | awk '{split($1, arr, ".")};{print "The subdomain ", arr[1], " is ", $4, " record and points to ", $5}'
+	dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | awk 'NR==2' | awk -F " " '{split($1, arr, ".")};{print "The subdomain " arr[1] " is a " $4 " record and points to " $5}'
 }
 
 if [ $# -eq 2 ]
